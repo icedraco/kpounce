@@ -9,11 +9,16 @@ fun getTimestamp(): String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).
 fun main(args: Array<String>) {
     val client = Pounce()
     with (client) {
-        addFurre("Artex")
-        addFurre("CPU")
-        addFurre("Winter")
-        addDream("furc://naiagreen")
-        addDream("furc://vinca")
+        if (args.isNotEmpty()) {
+            args.forEach { addFurre(it) }
+        } else {
+            println("No commandline arguments found - using defaults")
+            addFurre("Artex")
+            addFurre("CPU")
+            addFurre("Winter")
+            addDream("furc://naiagreen")
+            addDream("furc://vinca")
+        }
     }
 
     client.update(
